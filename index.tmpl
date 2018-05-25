@@ -1,0 +1,24 @@
+{{ $CurrentContainer := where $ "ID" .Docker.CurrentContainerID | first }}
+
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="index.css" />
+    </head>
+    <body>
+        <h1>Review apps</h1>
+
+        {{ range $host, $containers := groupByMulti $ "Env.VIRTUAL_HOST" "," }}
+            <ul>
+            {{ range $container := $containers }}
+                {{ if not (eq $container.Env.VIRTUAL_HOST $CurrentContainer.Env.VIRTUAL_HOST) }}
+                    <li>
+                        <a href="//{{ $host }}" target="_blank">
+                            {{ $host }}
+                        </a>
+                    </li>
+                {{ end }}
+            {{ end }}
+            </ul>
+        {{ end }}
+    </body>
+</html>

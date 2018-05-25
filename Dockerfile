@@ -1,5 +1,5 @@
 FROM nginx:1.13
-LABEL maintainer="Jason Wilder mail@jasonwilder.com"
+LABEL maintainer="Bryan te Beek <bryan@lifely.nl>"
 
 # Install wget and install/updates certificates
 RUN apt-get update \
@@ -24,6 +24,7 @@ RUN wget https://github.com/jwilder/docker-gen/releases/download/$DOCKER_GEN_VER
  && tar -C /usr/local/bin -xvzf docker-gen-linux-amd64-$DOCKER_GEN_VERSION.tar.gz \
  && rm /docker-gen-linux-amd64-$DOCKER_GEN_VERSION.tar.gz
 
+COPY index.css /usr/share/nginx/html/index.css
 COPY network_internal.conf /etc/nginx/
 
 COPY . /app/
@@ -31,7 +32,7 @@ WORKDIR /app/
 
 ENV DOCKER_HOST unix:///tmp/docker.sock
 
-VOLUME ["/etc/nginx/certs", "/etc/nginx/dhparam"]
+VOLUME ["/etc/nginx/certs"]
 
 ENTRYPOINT ["/app/docker-entrypoint.sh"]
 CMD ["forego", "start", "-r"]

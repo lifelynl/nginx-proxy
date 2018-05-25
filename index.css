@@ -1,0 +1,30 @@
+html {
+    color: white;
+    background-color: #7C31F2;
+    font-family: 'Roboto'
+}
+
+body {
+    margin: 150px 0 0 150px;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+h1 {
+    font-weight: normal;
+    font-size: 45px;
+}
+
+ul {
+    margin: 0;
+    padding: 0 0 0 25px;
+    list-style-type: none;
+    list-style-position: inside;
+}
+
+li {
+    font-size: 30px;
+}

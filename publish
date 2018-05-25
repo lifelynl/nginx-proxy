@@ -1,0 +1,4 @@
+#!/bin/bash
+
+docker build . -t lifely/nginx-proxy-overview:latest
+docker push lifely/nginx-proxy-overview:latest

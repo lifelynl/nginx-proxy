@@ -8,7 +8,24 @@ services:
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
 
-  whoami:
-    image: jwilder/whoami
+  review-apps:
+    build: .
+    container_name: review-apps
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
     environment:
-      - VIRTUAL_HOST=whoami.local
+      - VIRTUAL_HOST=overview.apps
+
+  alpha:
+    image: tutum/hello-world
+    environment:
+      - VIRTUAL_HOST=alpha.apps
+    labels:
+      - url=alpha.apps
+
+  beta:
+    image: tutum/hello-world
+    environment:
+      - VIRTUAL_HOST=beta.apps
+    labels:
+      - url=beta.apps
